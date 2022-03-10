@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1030696003777",
+    "project_id": "todos--storage",
+    "storage_bucket": "todos--storage.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1030696003777:android:6ff0e58a826531a119cc40",
+        "android_client_info": {
+          "package_name": "com.example.todos_google_storage"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1030696003777-mp546aem5loo0o6c4ollgd6m1d445mi7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkpK_I173O9evMiVXmn2BmGNY1ShIgKPY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1030696003777-mp546aem5loo0o6c4ollgd6m1d445mi7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
