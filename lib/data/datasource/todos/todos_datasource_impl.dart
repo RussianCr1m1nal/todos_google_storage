@@ -5,7 +5,7 @@ import 'package:todos_google_storage/data/datasource/todos/todos_datasource.dart
 @Singleton(as: TodosDataSource)
 class TodosDataSourceImpl extends TodosDataSource {
   @override
-  Stream<QuerySnapshot<Map<String, dynamic>>> getTodos(String userId) {
+  Stream<QuerySnapshot<Map<String, dynamic>>> watchTodos(String userId) {
     return FirebaseFirestore.instance.collection("Todos").where("user", isEqualTo: userId).snapshots();
   }
 

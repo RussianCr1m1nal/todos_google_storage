@@ -18,12 +18,12 @@ class TodosRepositoryImpl extends TodosRepository {
   TodosRepositoryImpl({required this.googleAuthDataSource, required this.todosDataSource});
 
   @override
-  Future<Stream<List<Todo>>> getTodos() async {
+  Future<Stream<List<Todo>>> watchTodos() async {
     final user = await googleAuthDataSource.getUser();
 
     todosSubscription?.cancel();
     todosSubscription = todosDataSource
-        .getTodos(user == null ? '' : user.id)
+        .watchTodos(user == null ? '' : user.id)
         .map((querySnapshot) => querySnapshot.docs
             .map((map) => Todo(title: map['title'], body: map['body'], done: map['done'], id: map.id))
             .toList())

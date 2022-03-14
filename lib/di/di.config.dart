@@ -17,7 +17,7 @@ import '../domain/repository/google_auth/google_auth_repository_impl.dart'
 import '../domain/repository/todos/todos_repository.dart' as _i12;
 import '../domain/repository/todos/todos_repository_impl.dart' as _i13;
 import '../domain/usecase/add_todo_usecase.dart' as _i15;
-import '../domain/usecase/get_todos_usecase.dart' as _i16;
+import '../domain/usecase/watch_todos_usecase.dart' as _i16;
 import '../domain/usecase/get_user_usecase.dart' as _i17;
 import '../domain/usecase/login_usecase.dart' as _i9;
 import '../domain/usecase/logout_usecase.dart' as _i8;
@@ -49,8 +49,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       _i14.UpdateTodoUseCase(todosRepository: get<_i12.TodosRepository>()));
   gh.singleton<_i15.AddTodoUseCase>(
       _i15.AddTodoUseCase(todosRepository: get<_i12.TodosRepository>()));
-  gh.singleton<_i16.GetTodosUseCase>(
-      _i16.GetTodosUseCase(todosRepository: get<_i12.TodosRepository>()));
+  gh.singleton<_i16.WatchTodosUseCase>(
+      _i16.WatchTodosUseCase(todosRepository: get<_i12.TodosRepository>()));
   gh.singleton<_i17.GetUserUseCase>(_i17.GetUserUseCase(
       googleAuthRepository: get<_i5.GoogleAuthRepository>()));
   gh.factory<_i18.LoginBloc>(() => _i18.LoginBloc(
@@ -58,7 +58,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       getUserUseCase: get<_i17.GetUserUseCase>(),
       logOutUseCase: get<_i8.LogOutUseCase>()));
   gh.factory<_i19.TodosBloc>(() => _i19.TodosBloc(
-      getTodosUseCase: get<_i16.GetTodosUseCase>(),
+      watchTodosUseCase: get<_i16.WatchTodosUseCase>(),
       updateTodoUseCase: get<_i14.UpdateTodoUseCase>()));
   gh.factory<_i20.AddTodoBloc>(
       () => _i20.AddTodoBloc(addTodoUseCase: get<_i15.AddTodoUseCase>()));

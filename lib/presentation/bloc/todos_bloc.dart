@@ -3,12 +3,12 @@ import 'dart:async';
 import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:todos_google_storage/domain/entity/todo.dart';
-import 'package:todos_google_storage/domain/usecase/get_todos_usecase.dart';
+import 'package:todos_google_storage/domain/usecase/watch_todos_usecase.dart';
 import 'package:todos_google_storage/domain/usecase/update_todo_usecase.dart';
 
 @injectable
 class TodosBloc {
-  final GetTodosUseCase getTodosUseCase;
+  final WatchTodosUseCase watchTodosUseCase;
   final UpdateTodoUseCase updateTodoUseCase;
 
   final BehaviorSubject<List<Todo>> _todosSubject = BehaviorSubject<List<Todo>>.seeded([]);
@@ -16,12 +16,12 @@ class TodosBloc {
 
   Stream<List<Todo>> get todosStream => _todosSubject.stream;
 
-  TodosBloc({required this.getTodosUseCase, required this.updateTodoUseCase}) {
+  TodosBloc({required this.watchTodosUseCase, required this.updateTodoUseCase}) {
     loadTodos();
   }
 
   void loadTodos() async {
-    (await getTodosUseCase()).fold((failure) {
+    (await watchTodosUseCase()).fold((failure) {
       _todosSubject.add([]);
       print(failure.message);
     }, (todosStream) {

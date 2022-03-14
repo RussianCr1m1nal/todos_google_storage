@@ -23,30 +23,29 @@ class HomeScreen extends StatelessWidget {
       ],
       child: Consumer<HomeBloc>(
         builder: (context, homeBloc, child) {
-          return StreamBuilder<int>(
-            stream: homeBloc.pageStream,
-            builder: (context, snapshot) {
-              return Scaffold(
-                body: SafeArea(
-                  child: PageView(
-                    onPageChanged: homeBloc.onPageChanged,
-                    controller: homeBloc.pageController,
-                    children: const [
-                      TodosPage(),
-                      LoginPage(),
+          return Scaffold(
+            body: SafeArea(
+              child: PageView(
+                onPageChanged: homeBloc.onPageChanged,
+                controller: homeBloc.pageController,
+                children: const [
+                  TodosPage(),
+                  LoginPage(),
+                ],
+              ),
+            ),
+            bottomNavigationBar: StreamBuilder<int>(
+                stream: homeBloc.pageStream,
+                builder: (context, snapshot) {
+                  return BottomNavigationBar(
+                    items: const [
+                      BottomNavigationBarItem(icon: Icon(Icons.check_box), label: 'Todos'),
+                      BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
                     ],
-                  ),
-                ),
-                bottomNavigationBar: BottomNavigationBar(
-                  items: const [
-                    BottomNavigationBarItem(icon: Icon(Icons.check_box), label: 'Todos'),
-                    BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
-                  ],
-                  currentIndex: snapshot.data ?? 0,
-                  onTap: homeBloc.onNavigationItemTap,
-                ),
-              );
-            },
+                    currentIndex: snapshot.data ?? 0,
+                    onTap: homeBloc.onNavigationItemTap,
+                  );
+                }),
           );
         },
       ),
